@@ -1,0 +1,10 @@
+groups:
+- name: NETWORKUtilisationHigh
+  rules:
+  - alert: NETWORKUtilisationHigh
+    expr: sum by (instance)(rate(node_network_receive_bytes_total[1m])) + sum by (instance) (irate(node_network_transmit_bytes_total[1m])) > 1000
+    for: 1m
+    labels:
+      severity: 'critical'
+    annotations:
+      summary: NETWORK Utilisation is high

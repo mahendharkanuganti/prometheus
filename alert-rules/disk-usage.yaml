@@ -1,0 +1,10 @@
+groups:
+- name: DISKUtilisationHigh
+  rules:
+  - alert: DISKUtilisationHigh
+    expr: 100- (node_filesystem_avail_bytes{mountpoint="/"}*100/node_filesystem_size_bytes{mountpoint="/"}) > 70
+    for: 1m
+    labels:
+      severity: 'critical'
+    annotations:
+      summary: DISK Utilisation is high

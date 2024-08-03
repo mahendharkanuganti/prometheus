@@ -1,0 +1,10 @@
+groups:
+- name: RAMUtilisationHigh
+  rules:
+  - alert: RAMUtilisationHigh
+    expr: 100 - (node_memory_MemFree_bytes / node_memory_MemTotal_bytes) * 100 > 60
+    for: 1m
+    labels:
+      severity: 'critical'
+    annotations:
+      summary: RAM Utilisation is high
